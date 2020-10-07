@@ -736,8 +736,8 @@ def evaluate(boardSeq, comment, bert_emb, intvals, cnn1, w_hidden2hidden, boarde
     use_teacher_forcing = True if random.random() < t_ratio else False
     generated_boards = torch.ones(board_per_skill * 16, batch_size, 512)
 
-    for j in range(generated_skills_c.size()[1]):
-        decoder_hiddenB = generated_skills_c.clone()[:,j,:].view(1, batch_size, d_model).to(dtype = torch.float32).repeat(1, 1, 1)
+    for j in range(generated_skills.size()[1]):
+        decoder_hiddenB = generated_skills.clone()[:,j,:].view(1, batch_size, d_model).to(dtype = torch.float32).repeat(1, 1, 1)
 
         for i in range(board_per_skill):
             outputB, decoder_hiddenB = decoderBoard2(decoder_inputB, decoder_hiddenB)
@@ -759,7 +759,7 @@ def evaluate(boardSeq, comment, bert_emb, intvals, cnn1, w_hidden2hidden, boarde
     generated_boards1 = torch.ones(board_per_skill * 4, batch_size, 512)
 
     for j in range(skills2.size()[1]):
-        decoder_hiddenB1 = comment_skill2.clone()[:,j,:].view(1, batch_size, d_model).to(dtype = torch.float32).repeat(1, 1, 1)
+        decoder_hiddenB1 = skills2.clone()[:,j,:].view(1, batch_size, d_model).to(dtype = torch.float32).repeat(1, 1, 1)
 
         for i in range(board_per_skill):
             outputB1, decoder_hiddenB1 = decoderBoard2(decoder_inputB1, decoder_hiddenB1)
