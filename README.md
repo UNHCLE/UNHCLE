@@ -6,4 +6,6 @@ Then run `make_feat.py` for both training and testing/validation files to create
 
 Run `python3 siam-correct-cook-dtw-comment.py` to start training the UNHCLE model. Models are saved as `.pth` extensions which can be easily saved and loaded using `torch.load()`.
 
-The model will be evaluated every epoch and is trained for 100 epochs.
+The model is trained for 100 epochs.
+
+For evaluation, set batch_size = 1 and use appropriate feature files in dataloader and training code.
