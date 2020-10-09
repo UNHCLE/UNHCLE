@@ -645,24 +645,27 @@ def trainIters(cnn1, w_hidden2hidden, boardenc2skill1, boardenc2skill2, comment2
         torch.save(comment2skill, "./models/comment2skill_cook_maximalSkillDTW_200_big_siam.pth")
         torch.save(comment2skill2, "./models/comment2skill2_cook_maximalSkillDTW_200_big_siam.pth")
         print("Models saved for epoch")
-    tot1 = 0
-    tot2 = 0
-    cnt = 0
-    t_num1 = t_den1 = t_num2 = t_den2 = 0
-    for entry in train_loader:
-        al1, al2, iou11, iou12, iou21, iou22 = evaluate(entry[0], entry[1], entry[2], entry[3], cnn1, w_hidden2hidden, boardenc2skill1, boardenc2skill2, comment2skill, comment2skill2, decoderBoard1, decoderBoard2, w_hidden2board, decoderComment)
-        tot1 += al1
-        tot2 += al2
+    
+    #Uncomment this while eval
+    
+    # tot1 = 0
+    # tot2 = 0
+    # cnt = 0
+    # t_num1 = t_den1 = t_num2 = t_den2 = 0
+    # for entry in train_loader:
+    #     al1, al2, iou11, iou12, iou21, iou22 = evaluate(entry[0], entry[1], entry[2], entry[3], cnn1, w_hidden2hidden, boardenc2skill1, boardenc2skill2, comment2skill, comment2skill2, decoderBoard1, decoderBoard2, w_hidden2board, decoderComment)
+    #     tot1 += al1
+    #     tot2 += al2
 
-        t_num1 += iou11/iou12
-        t_num2 += iou21/iou22
-        cnt += 1
-        print(cnt)
-        # break
-    print("Alignment score 1:", tot1/cnt)
-    print("Alignment score 2:", tot2/cnt)
-    print("IoU score 1:", t_num1/cnt)
-    print("IoU score 2:", t_num2/cnt)
+    #     t_num1 += iou11/iou12
+    #     t_num2 += iou21/iou22
+    #     cnt += 1
+    #     print(cnt)
+    #     # break
+    # print("Alignment score 1:", tot1/cnt)
+    # print("Alignment score 2:", tot2/cnt)
+    # print("IoU score 1:", t_num1/cnt)
+    # print("IoU score 2:", t_num2/cnt)
         
 
 def evaluate(boardSeq, comment, bert_emb, intvals, cnn1, w_hidden2hidden, boardenc2skill1, boardenc2skill2, comment2skill, comment2skill2, decoderBoard1, decoderBoard2, w_hidden2board, decoderComment):
