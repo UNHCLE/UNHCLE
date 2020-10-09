@@ -496,7 +496,7 @@ criteriaBoard, criteriaComment,
 
     use_teacher_forcing = True if random.random() < t_ratio else False
         
-    count = 0
+    count = 1
     for j in range(generated_skills.size()[1]):
         decoder_hiddenC = generated_skills.clone()[:,j,:].view(batch_size, 1, d_model).repeat(1,1,1)
         lenToProduce = 6
@@ -531,7 +531,7 @@ criteriaBoard, criteriaComment,
 
     use_teacher_forcing = True if random.random() < t_ratio else False
         
-    count = 0
+    count = 1
     for j in range(comment_skill2.size()[1]):
         decoder_hiddenC_c = skills2.clone()[:,j,:].view(batch_size, 1, d_model).repeat(1,1,1)
 
